@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import * as path from 'path';
 
-type Day = `day${'1' | '2' | '3' | '4' | '5' | '6'}`;
+export type Day = `day${'1' | '2' | '3' | '4' | '5' | '6'}`;
 type Type =
   | `example`
   | `input`
