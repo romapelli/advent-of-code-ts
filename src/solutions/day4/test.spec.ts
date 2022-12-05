@@ -43,6 +43,7 @@ describe('Day 4', () => {
 
     it('should work', () => {
       const res = solution2();
+
       expect(res).toBe(sol);
     });
   });
