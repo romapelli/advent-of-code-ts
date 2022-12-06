@@ -10,6 +10,11 @@ type Type =
   | `solution1-example`
   | `solution2-example`;
 
+export interface DayConf {
+  ID: Day,
+  NAME: string
+}
+
 interface Opts {
   day: Day;
   type: Type;
