@@ -1,5 +1,7 @@
 import getInputFromFileAsString from '../../services/getInputFromFile';
 import parse from './parse';
+import day from './day';
+import Opts from '../../interfaces/solution';
 
 const walk = (
   [elf, ...elves]: string[][],
@@ -20,12 +22,9 @@ const walk = (
   return walk(elves, tops);
 };
 
-interface Opts {
-  input?: string;
-}
 export default function solution1({ input }: Opts = {}): string {
   if (!input) {
-    input = getInputFromFileAsString({ day: 'day1', type: 'input' });
+    input = getInputFromFileAsString({ day, type: 'input' });
   }
 
   const batches = parse(input);

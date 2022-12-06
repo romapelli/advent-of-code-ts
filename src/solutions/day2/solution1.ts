@@ -1,61 +1,62 @@
 import getInputFromFileAsString from '../../services/getInputFromFile';
 import parse from './parse';
+import Opts from '../../interfaces/solution';
+import day from './day';
 
-type Keys = 'R' | 'P'| 'S'
+type Keys = 'R' | 'P' | 'S';
 
 const Decrypt = (v: string): Keys => {
   if (['A', 'X'].includes(v)) {
-    return 'R'
+    return 'R';
   }
   if (['B', 'Y'].includes(v)) {
-    return 'P'
+    return 'P';
   }
-  return 'S'
-}
+  return 'S';
+};
 
 const Powers = (k: Keys): [Keys, number] => {
   if (k === 'R') {
-    return ['S', 1]
+    return ['S', 1];
   }
   if (k === 'P') {
-    return ['R', 2]
+    return ['R', 2];
   }
 
-  return ['P', 3]
-}
+  return ['P', 3];
+};
 
 enum Outcomes {
-  W =  6,
-  D =  3,
-  L =  0,
+  W = 6,
+  D = 3,
+  L = 0,
 }
 
-interface Opts {
-  input?: string;
-}
 export default function solution1({ input }: Opts = {}): string {
   if (!input) {
-    input = getInputFromFileAsString({ day: 'day2', type: 'input' });
+    input = getInputFromFileAsString({ day, type: 'input' });
   }
 
   const batches = parse(input);
 
-  return batches.reduce((acc, round) => {
-    const [_opp, _you] = round.split(' ')
+  return batches
+    .reduce((acc, round) => {
+      const [_opp, _you] = round.split(' ');
 
-    const opp = Decrypt(_opp)
-    const you = Decrypt(_you)
-    const [oppWinsOn] = Powers(opp)
-    const yourP = Powers(you)[1]
+      const opp = Decrypt(_opp);
+      const you = Decrypt(_you);
+      const [oppWinsOn] = Powers(opp);
+      const yourP = Powers(you)[1];
 
-    let outcome: Outcomes = Outcomes.W
+      let outcome: Outcomes = Outcomes.W;
 
-    if (oppWinsOn === you) {
-      outcome = Outcomes.L
-    } else if (opp === you) {
-      outcome = Outcomes.D
-    }
+      if (oppWinsOn === you) {
+        outcome = Outcomes.L;
+      } else if (opp === you) {
+        outcome = Outcomes.D;
+      }
 
-    return acc + outcome + yourP;
-  }, 0).toString();
+      return acc + outcome + yourP;
+    }, 0)
+    .toString();
 }

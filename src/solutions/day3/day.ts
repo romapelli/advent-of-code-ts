@@ -1,5 +1,5 @@
 import { Day } from '../../services/getInputFromFile';
 
-const day: Day = 'day6';
+const day: Day = 'day3';
 
 export default day;

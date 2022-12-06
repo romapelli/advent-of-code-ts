@@ -1,15 +1,16 @@
-import getInputFromFileAsString, {Day} from '../../services/getInputFromFile';
+import getInputFromFileAsString from '../../services/getInputFromFile';
 import solution1 from './solution1';
 import solution2 from './solution2';
+import day from './day';
 
-const day: Day = 'day4'
+describe(day, () => {
+  const example = getInputFromFileAsString({ day, type: 'example' });
 
-describe('Day 4', () => {
-  describe('Example', () => {
-    const input = getInputFromFileAsString({ day, type: 'example' });
+  describe('Part 1', () => {
+    const sol = getInputFromFileAsString({ day, type: 'solution1' });
 
-    it('should work with sol1', () => {
-      const res = solution1({ input });
+    it('should work with example', () => {
+      const res = solution1({ input: example });
       const exampleSol = getInputFromFileAsString({
         day,
         type: 'solution1-example',
@@ -17,20 +18,6 @@ describe('Day 4', () => {
 
       expect(res).toBe(exampleSol);
     });
-
-    it('should work with sol2', () => {
-      const res = solution2({ input });
-      const exampleSol = getInputFromFileAsString({
-        day,
-        type: 'solution2-example',
-      });
-
-      expect(res).toBe(exampleSol);
-    });
-  });
-
-  describe('Part 1', () => {
-    const sol = getInputFromFileAsString({ day, type: 'solution1' });
 
     it('should work', () => {
       const res = solution1();
@@ -41,9 +28,18 @@ describe('Day 4', () => {
   describe('Part 2', () => {
     const sol = getInputFromFileAsString({ day, type: 'solution2' });
 
+    it('should work with example', () => {
+      const res = solution2({ input: example });
+      const exampleSol = getInputFromFileAsString({
+        day,
+        type: 'solution2-example',
+      });
+
+      expect(res).toBe(exampleSol);
+    });
+
     it('should work', () => {
       const res = solution2();
-
       expect(res).toBe(sol);
     });
   });
